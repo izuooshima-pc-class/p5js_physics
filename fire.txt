@@ -1,0 +1,36 @@
+let angle = 0
+let rad = 0
+let ball={x:0,y:400,vx:0,vy:0,shot:false}
+
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  
+  if(keyIsDown(LEFT_ARROW)){
+    angle += 1
+  }
+  if(keyIsDown(RIGHT_ARROW)){
+    angle -= 1
+  }
+  rad = angle * PI / 180
+
+  if(keyIsDown(UP_ARROW)){
+    ball.vx = cos(rad)*10
+    ball.vy = sin(rad)*10
+    ball.shot = true
+  }
+  ball.x += ball.vx
+  ball.y -= ball.vy
+  if(ball.shot){
+    //ここに重力を書く
+  }
+  
+  //translate(0,400)
+  background(220);
+
+  line(0,400,cos(rad)*50,-sin(rad)*50+400)
+  circle(ball.x,ball.y,20)
+  text(angle,20,20)
+}
